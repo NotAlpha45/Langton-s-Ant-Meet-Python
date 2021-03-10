@@ -12,7 +12,7 @@ WINDOW.fill(0)
 
 angle = '0'
 pos_x = WIDTH//2
-pos_y = HEIGHT//2
+pos_y = HEIGHT-100
 
 
 class Ant():
@@ -163,6 +163,7 @@ class Ant45():
                 pos_x -= 1
                 pos_y -= 0
 
+
 def color_detect(x, y):
     if tuple(WINDOW.get_at((x, y))[:3]) == (0, 0, 0):
         return 'b'
@@ -172,14 +173,16 @@ def color_detect(x, y):
 
 def main():
     ant = Ant45()
+    ant2 = Ant()
 
     def draw():
         ant.walk()
+        ant2.walk()
         pygame.display.update()
 
     LOOP_IS_RUNNING = True
     while LOOP_IS_RUNNING:
-        # CLOCK.tick(2000)
+        CLOCK.tick(200)
         for event in pygame.event.get():
             if event.type == pygame.locals.QUIT:
                 LOOP_IS_RUNNING = False
