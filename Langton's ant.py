@@ -83,13 +83,11 @@ class Ant45():
             if color_detect(pos_x, pos_y) == 'b':
                 WINDOW.set_at((pos_x, pos_y), WHITE)
                 angle = '0'
-                pos_x -= 0
                 pos_y -= 1
             else:
                 WINDOW.set_at((pos_x, pos_y), BLACK)
                 angle = '90'
                 pos_x += 1
-                pos_y -= 0
 
         if angle == '90':
             if color_detect(pos_x, pos_y) == 'b':
@@ -108,11 +106,9 @@ class Ant45():
                 WINDOW.set_at((pos_x, pos_y), WHITE)
                 angle = '90'
                 pos_x += 1
-                pos_y += 0
             else:
                 WINDOW.set_at((pos_x, pos_y), BLACK)
                 angle = '180'
-                pos_x += 0
                 pos_y += 1
 
         if angle == '180':
@@ -132,11 +128,9 @@ class Ant45():
                 WINDOW.set_at((pos_x, pos_y), WHITE)
                 angle = '-90'
                 pos_x -= 1
-                pos_y -= 0
             else:
                 WINDOW.set_at((pos_x, pos_y), BLACK)
                 angle = '0'
-                pos_x += 0
                 pos_y -= 1
 
         if angle == '-90':
@@ -155,13 +149,11 @@ class Ant45():
             if color_detect(pos_x, pos_y) == 'b':
                 WINDOW.set_at((pos_x, pos_y), WHITE)
                 angle = '180'
-                pos_x -= 0
                 pos_y += 1
             else:
                 WINDOW.set_at((pos_x, pos_y), BLACK)
                 angle = '-90'
                 pos_x -= 1
-                pos_y -= 0
 
 
 def color_detect(x, y):
