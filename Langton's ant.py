@@ -15,14 +15,8 @@ pos_x = WIDTH//2
 pos_y = HEIGHT//2
 
 
-def main():
-    def color_detect(x, y):
-        if tuple(WINDOW.get_at((x, y))[:3]) == (0, 0, 0):
-            return 'b'
-        else:
-            return 'w'
-
-    def walk():
+class Ant():
+    def walk(self):
         global angle
         global pos_x
         global pos_y
@@ -66,13 +60,126 @@ def main():
                 angle = '-90'
                 pos_x -= 1
 
+
+class Ant45():
+    def walk(self):
+        global angle
+        global pos_x
+        global pos_y
+
+        if angle == '0':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '-45'
+                pos_x -= 1
+                pos_y -= 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '45'
+                pos_x += 1
+                pos_y -= 1
+
+        if angle == '45':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '0'
+                pos_x -= 0
+                pos_y -= 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '90'
+                pos_x += 1
+                pos_y -= 0
+
+        if angle == '90':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '45'
+                pos_x += 1
+                pos_y -= 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '135'
+                pos_x += 1
+                pos_y += 1
+
+        if angle == '135':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '90'
+                pos_x += 1
+                pos_y += 0
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '180'
+                pos_x += 0
+                pos_y += 1
+
+        if angle == '180':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '135'
+                pos_x += 1
+                pos_y += 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '-135'
+                pos_x -= 1
+                pos_y += 1
+
+        if angle == '-45':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '-90'
+                pos_x -= 1
+                pos_y -= 0
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '0'
+                pos_x += 0
+                pos_y -= 1
+
+        if angle == '-90':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '-135'
+                pos_x -= 1
+                pos_y += 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '-45'
+                pos_x -= 1
+                pos_y -= 1
+
+        if angle == '-135':
+            if color_detect(pos_x, pos_y) == 'b':
+                WINDOW.set_at((pos_x, pos_y), WHITE)
+                angle = '180'
+                pos_x -= 0
+                pos_y += 1
+            else:
+                WINDOW.set_at((pos_x, pos_y), BLACK)
+                angle = '-90'
+                pos_x -= 1
+                pos_y -= 0
+
+def color_detect(x, y):
+    if tuple(WINDOW.get_at((x, y))[:3]) == (0, 0, 0):
+        return 'b'
+    else:
+        return 'w'
+
+
+def main():
+    ant = Ant45()
+
     def draw():
-        walk()
+        ant.walk()
         pygame.display.update()
 
     LOOP_IS_RUNNING = True
     while LOOP_IS_RUNNING:
-        CLOCK.tick(120)
+        # CLOCK.tick(2000)
         for event in pygame.event.get():
             if event.type == pygame.locals.QUIT:
                 LOOP_IS_RUNNING = False
